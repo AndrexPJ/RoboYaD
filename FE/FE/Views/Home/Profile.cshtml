@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Profile</h2>
+
+@foreach (var x in ViewBag.ListCompany)
+{ 
+    <br />
+    <a  href="/Profile/Statistic/@x">@x</a>
+}
