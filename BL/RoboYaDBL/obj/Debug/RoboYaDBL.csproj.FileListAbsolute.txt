@@ -1,0 +1,13 @@
+E:\Project\RoboYaDBL\RoboYaDBL\bin\Debug\RoboYaDBL.exe.config
+E:\Project\RoboYaDBL\RoboYaDBL\bin\Debug\RoboYaDBL.exe
+E:\Project\RoboYaDBL\RoboYaDBL\bin\Debug\RoboYaDBL.pdb
+E:\Project\RoboYaDBL\RoboYaDBL\bin\Debug\MongoDB.Bson.dll
+E:\Project\RoboYaDBL\RoboYaDBL\bin\Debug\MongoDB.Driver.Core.dll
+E:\Project\RoboYaDBL\RoboYaDBL\bin\Debug\MongoDB.Driver.dll
+E:\Project\RoboYaDBL\RoboYaDBL\bin\Debug\MongoDB.Driver.Legacy.dll
+E:\Project\RoboYaDBL\RoboYaDBL\bin\Debug\MongoDB.Bson.xml
+E:\Project\RoboYaDBL\RoboYaDBL\bin\Debug\MongoDB.Driver.xml
+E:\Project\RoboYaDBL\RoboYaDBL\bin\Debug\MongoDB.Driver.Legacy.xml
+E:\Project\RoboYaDBL\RoboYaDBL\obj\Debug\RoboYaDBL.csprojResolveAssemblyReference.cache
+E:\Project\RoboYaDBL\RoboYaDBL\obj\Debug\RoboYaDBL.exe
+E:\Project\RoboYaDBL\RoboYaDBL\obj\Debug\RoboYaDBL.pdb
