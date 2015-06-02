@@ -11,3 +11,16 @@ E:\Project\RoboYaDBL\RoboYaDBL\bin\Debug\MongoDB.Driver.Legacy.xml
 E:\Project\RoboYaDBL\RoboYaDBL\obj\Debug\RoboYaDBL.csprojResolveAssemblyReference.cache
 E:\Project\RoboYaDBL\RoboYaDBL\obj\Debug\RoboYaDBL.exe
 E:\Project\RoboYaDBL\RoboYaDBL\obj\Debug\RoboYaDBL.pdb
+C:\Users\Андрей\Documents\GitHub\RoboYaD\BL\RoboYaDBL\bin\Debug\RoboYaDBL.exe.config
+C:\Users\Андрей\Documents\GitHub\RoboYaD\BL\RoboYaDBL\obj\Debug\RoboYaDBL.exe
+C:\Users\Андрей\Documents\GitHub\RoboYaD\BL\RoboYaDBL\obj\Debug\RoboYaDBL.pdb
+C:\Users\Андрей\Documents\GitHub\RoboYaD\BL\RoboYaDBL\bin\Debug\RoboYaDBL.exe
+C:\Users\Андрей\Documents\GitHub\RoboYaD\BL\RoboYaDBL\bin\Debug\RoboYaDBL.pdb
+C:\Users\Андрей\Documents\GitHub\RoboYaD\BL\RoboYaDBL\bin\Debug\MongoDB.Bson.dll
+C:\Users\Андрей\Documents\GitHub\RoboYaD\BL\RoboYaDBL\bin\Debug\MongoDB.Driver.Core.dll
+C:\Users\Андрей\Documents\GitHub\RoboYaD\BL\RoboYaDBL\bin\Debug\MongoDB.Driver.dll
+C:\Users\Андрей\Documents\GitHub\RoboYaD\BL\RoboYaDBL\bin\Debug\MongoDB.Driver.Legacy.dll
+C:\Users\Андрей\Documents\GitHub\RoboYaD\BL\RoboYaDBL\bin\Debug\MongoDB.Bson.xml
+C:\Users\Андрей\Documents\GitHub\RoboYaD\BL\RoboYaDBL\bin\Debug\MongoDB.Driver.xml
+C:\Users\Андрей\Documents\GitHub\RoboYaD\BL\RoboYaDBL\bin\Debug\MongoDB.Driver.Legacy.xml
+C:\Users\Андрей\Documents\GitHub\RoboYaD\BL\RoboYaDBL\obj\Debug\RoboYaDBL.csprojResolveAssemblyReference.cache

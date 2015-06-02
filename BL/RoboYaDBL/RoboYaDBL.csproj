@@ -53,8 +53,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandDocument.cs" />
+    <Compile Include="Document.cs" />
+    <Compile Include="IDocument.cs" />
+    <Compile Include="PriceDocument.cs" />
+    <Compile Include="MainApplicationProccessor.cs" />
     <Compile Include="DocumentRepository.cs" />
+    <Compile Include="IDocumentProccessor.cs" />
     <Compile Include="IDocumentRepository.cs" />
+    <Compile Include="MainDocumentProccessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
