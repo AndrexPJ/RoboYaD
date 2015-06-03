@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FE.Models;
+using FE.Utils;
+using MongoDB.Driver.Builders;
 
 namespace FE.Controllers
 {
@@ -18,11 +21,14 @@ namespace FE.Controllers
         public ActionResult Profile()
         {
 
+            var ClientLogin = MongoDBConection.Connection<ApplicationUser>("AspNetUsers")
+              .Find(Query.Matches("UserName", User.Identity.Name))
+               .FirstOrDefault()
+               .ClientLogin;
 
-            IList<string> list = new List<string>();
-            list.Add("12312412412");
-            list.Add("56443535434");
-            list.Add("57656565445");
+
+            var list = MongoDBConection.Connection<Copanies>("companies").Distinct("Name", Query.Matches("ClientLogin", ClientLogin)).ToList();
+
             ViewBag.ListCompany = list;
             return View();
         }

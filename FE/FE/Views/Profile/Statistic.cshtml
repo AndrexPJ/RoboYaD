@@ -10,32 +10,91 @@
 
 <h3>Company @ViewBag.company </h3>
 
-<canvas id="myChart" width="400" height="400"></canvas>
+Статус рекламной кампании: @ViewBag.lastElem.Status<br />
+Суммарный расход бюджета: @ViewBag.lastElem.Sum <br />
+
+
+
+<canvas id="myChart" style="width:100%;"></canvas>
+<br />
+<canvas id="crt" style="width:100%;"></canvas>
+
+<br />
+<canvas id="sum" style="width:100%;"></canvas>
 
 <script>
 
     var ctx = document.getElementById("myChart").getContext("2d");
     var data = {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        labels: [@Html.Raw(ViewBag.labels)],
         datasets: [
             {
-                label: "My First dataset",
-                fillColor: "rgba(220,220,220,0.5)",
-                strokeColor: "rgba(220,220,220,0.8)",
-                highlightFill: "rgba(220,220,220,0.75)",
-                highlightStroke: "rgba(220,220,220,1)",
-                data: [65, 59, 80, 81, 56, 55, 40]
+                label: "Clicks",
+                fillColor: "rgba(220,220,220,0.2)",
+                strokeColor: "rgba(220,220,220,1)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: [@Html.Raw(ViewBag.dateClicks)]
             },
             {
-                label: "My Second dataset",
-                fillColor: "rgba(151,187,205,0.5)",
-                strokeColor: "rgba(151,187,205,0.8)",
-                highlightFill: "rgba(151,187,205,0.75)",
-                highlightStroke: "rgba(151,187,205,1)",
-                data: [28, 48, 40, 19, 86, 27, 90]
+                label: "Shows",
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: [@Html.Raw(ViewBag.dateShows)]
             }
         ]
     };
 
-    var myBarChart = new Chart(ctx).Bar(data);
+    var myBarChart = new Chart(ctx).Line(data);
+
+
+
+
+
+
+
+
+    var ctx1 = document.getElementById("crt").getContext("2d");
+    var data1 = {
+        labels: [@Html.Raw(ViewBag.labels)],
+        datasets: [
+            {
+                label: "crt",
+                fillColor: "rgba(220,220,220,0.2)",
+                strokeColor: "rgba(220,220,220,1)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: [@Html.Raw(ViewBag.ctrStat)]
+            }
+        ]
+    };
+
+     new Chart(ctx1).Line(data1);
+
+
+     var ctx2 = document.getElementById("sum").getContext("2d");
+     new Chart(ctx2).Line( {
+         labels: [@Html.Raw(ViewBag.labels)],
+         datasets: [
+             {
+                 label: "midle price",
+                 fillColor: "rgba(151,187,205,0.2)",
+                 strokeColor: "rgba(151,187,205,1)",
+                 pointColor: "rgba(151,187,205,1)",
+                 pointStrokeColor: "#fff",
+                 pointHighlightFill: "#fff",
+                 pointHighlightStroke: "rgba(151,187,205,1)",
+                 data: [@Html.Raw(ViewBag.midllePrice)]
+             }
+         ]
+     });
+
 </script>
