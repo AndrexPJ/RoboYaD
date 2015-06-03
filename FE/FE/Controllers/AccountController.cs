@@ -22,7 +22,7 @@ namespace FE.Controllers
             this.UserManager = new UserManager<ApplicationUser>(
                 new UserStore<ApplicationUser>("Mongo"));
 
-          
+
 
         }
 
@@ -53,6 +53,7 @@ namespace FE.Controllers
         {
             if (ModelState.IsValid)
             {
+               
                 var user = await UserManager.FindAsync(model.UserName, model.Password);
                 if (user != null)
                 {
@@ -86,10 +87,11 @@ namespace FE.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName };
+                var user = new ApplicationUser() { UserName = model.UserName, ClientLogin = model.ClientLogin };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }
