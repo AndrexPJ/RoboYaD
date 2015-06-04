@@ -1,11 +1,8 @@
-﻿using System;
-using MongoDB.Bson;
-
-namespace RoboYaDBL
+﻿namespace RoboYaDBL.Documents
 {
-    class PriceDocument : Document
+    class PhrasePriceDocument : DateTimeDocumentBase
     {
-        public string Phrase { get; set; }
+        public int PhraseID { get; set; }
         public double Min { get; set; }
         public double Max { get; set; }
         public double PremiumMax { get; set; }
