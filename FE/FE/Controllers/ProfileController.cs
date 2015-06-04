@@ -55,14 +55,23 @@ namespace FE.Controllers
            .SetLimit(12);
 
 
-            ViewBag.labels = "\"" + String.Join("\", \"", elemnts.Select(x => x.datetime)) + "\"";
-            ViewBag.dateShows = "\"" + String.Join("\", \"", elemnts.Select(x => x.Shows)) + "\""; 
-            ViewBag.dateClicks = "\"" + String.Join("\", \"", elemnts.Select(x => x.Clicks)) + "\"";
+             IList<Copanies> compressElems = new List<Copanies>();
+            foreach(Copanies elem in elemnts.ToList<Copanies>())
+            {
+                if (!compressElems.Select<Copanies,string>(x => x.datetime.Date.ToShortDateString()).Contains(elem.datetime.Date.ToShortDateString()))
+                    compressElems.Add(elem);
+            }
+      
+
+            //var compressElems = compress(elemnts);
+            ViewBag.labels = "\"" + String.Join("\", \"", compressElems.Select(x => x.datetime.Date.ToShortDateString())) + "\"";
+            ViewBag.dateShows = "\"" + String.Join("\", \"", compressElems.Select(x => x.Shows)) + "\""; 
+            ViewBag.dateClicks = "\"" + String.Join("\", \"", compressElems.Select(x => x.Clicks)) + "\"";
 
 
 
-            ViewBag.ctrStat = "\"" + String.Join("\", \"", elemnts.Select<Copanies, string>(x => ((double)x.Clicks * 100.0 / (double)x.Shows).ToString(CultureInfo.GetCultureInfo("en-GB")))) + "\""; 
-            ViewBag.midllePrice = "\"" + String.Join("\", \"", elemnts.Select<Copanies, string>(x => ((double)x.Sum / (double)x.Clicks).ToString(CultureInfo.GetCultureInfo("en-GB")))) + "\""; 
+            ViewBag.ctrStat = "\"" + String.Join("\", \"", compressElems.Select<Copanies, string>(x => ((double)x.Clicks * 100.0 / (double)x.Shows).ToString(CultureInfo.GetCultureInfo("en-GB")))) + "\""; 
+            ViewBag.midllePrice = "\"" + String.Join("\", \"", compressElems.Select<Copanies, string>(x => ((double)x.Sum / (double)x.Clicks).ToString(CultureInfo.GetCultureInfo("en-GB")))) + "\""; 
 
 
             ViewBag.lastElem = lastElem.First();
@@ -70,5 +79,36 @@ namespace FE.Controllers
             ViewBag.company = company;
             return View();
         }
+        [HttpGet]
+        [Authorize]
+        public ActionResult CompanyStatus(string company)
+        {
+            ViewBag.company = company;
+            return PartialView();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult CompanyStatus(StatusCompany model, string company)
+        {
+
+             var companyId = MongoDBConection.Connection<Copanies>("companies")
+             .Find(Query.Matches("Name", company))
+             .SetLimit(1).FirstOrDefault().CampaignID;
+
+            var elemnts = MongoDBConection.Connection<Copanies>("CampaignSettings")
+                .Update(Query.EQ("CampaignID", companyId.ToString()), Update.Set("ShowInTop", model.ShowInTop)
+                .Set("IsActive", model.IsActive)
+                .Set("ShowInBottom", model.ShowInBottom)
+                .Set("MaxPrice", model.MaxPrice)
+                .Set("CampaignID", companyId));
+
+        
+              
+            return PartialView();
+        }
+        
+ 
     }
 }
+

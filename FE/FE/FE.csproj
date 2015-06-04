@@ -170,6 +170,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Copanies.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\StatusCompany.cs" />
     <Compile Include="Models\yandex_bot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -227,6 +228,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Profile.cshtml" />
     <Content Include="Views\Profile\Statistic.cshtml" />
+    <Content Include="Views\Profile\CompanyStatus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

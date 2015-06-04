@@ -4,7 +4,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <script src="~/Scripts/Chart.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<div id="modDialog" class="modal fade">
+    <div id="dialogContent" class="modal-dialog"></div>
+</div>
 
 <h2>Statistic</h2>
 
@@ -14,7 +20,8 @@
 Суммарный расход бюджета: @ViewBag.lastElem.Sum <br />
 
 
-
+@Html.ActionLink("Settings", "CompanyStatus",
+                new { company = ViewBag.company }, new { @class = "compItem" })
 <canvas id="myChart" style="width:100%;"></canvas>
 <br />
 <canvas id="crt" style="width:100%;"></canvas>
@@ -97,4 +104,17 @@
          ]
      });
 
+
+
+    $(function () {
+        $.ajaxSetup({ cache: false });
+        $(".compItem").click(function (e) {
+
+            e.preventDefault();
+            $.get(this.href, function (data) {
+                $('#dialogContent').html(data);
+                $('#modDialog').modal('show');
+            });
+        });
+    })
 </script>
