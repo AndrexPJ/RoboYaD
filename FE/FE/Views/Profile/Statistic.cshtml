@@ -24,11 +24,24 @@
                 new { company = ViewBag.company }, new { @class = "compItem" })
 <canvas id="myChart" style="width:100%;"></canvas>
 <br />
-<canvas id="crt" style="width:100%;"></canvas>
+<div style="margin: 0 auto; width: 150px;">
+    <span style="display: inline-block; width: 20px; height: 20px; background-color: rgba(143,151,155,0.2); "></span> Clicks &nbsp;&nbsp;
+    <span style="display: inline-block; width: 20px; height: 20px; background-color: rgba(151,187,205,0.2); "></span> Shows<br />
+</div>
+<br />
 
 <br />
-<canvas id="sum" style="width:100%;"></canvas>
 
+<canvas id="crt" style="width:100%;"></canvas>
+<div style="margin: 0 auto; width: 150px;">
+    <span style="display: inline-block; width: 20px; height: 20px; background-color: rgba(220,220,220,0.2); "></span> CRT &nbsp;&nbsp;
+</div>
+<br />
+<canvas id="sum" style="width:100%;"></canvas>
+<div style="margin: 0 auto; width: 150px;">
+    <span style="display: inline-block; width: 20px; height: 20px; background-color: rgba(151,187,205,0.2); "></span> Average price click &nbsp;&nbsp;
+</div>
+<br />
 <script>
 
     var ctx = document.getElementById("myChart").getContext("2d");
@@ -37,9 +50,9 @@
         datasets: [
             {
                 label: "Clicks",
-                fillColor: "rgba(220,220,220,0.2)",
+                fillColor: "rgba(143,151,155,0.2)",
                 strokeColor: "rgba(220,220,220,1)",
-                pointColor: "rgba(220,220,220,1)",
+                pointColor: "rgba(122,122,122,1)",
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(220,220,220,1)",

@@ -18,7 +18,7 @@ namespace FE.Controllers
     public class ProfileController : Controller
     {
         //
-     
+
 
 
 
@@ -32,7 +32,7 @@ namespace FE.Controllers
 
         [Authorize]
         [HttpGet]
-        public  ActionResult Statistic(string company)
+        public ActionResult Statistic(string company)
         {
             if (company == null)
                 throw new HttpException(404, "lol");
@@ -55,23 +55,23 @@ namespace FE.Controllers
            .SetLimit(12);
 
 
-             IList<Copanies> compressElems = new List<Copanies>();
-            foreach(Copanies elem in elemnts.ToList<Copanies>())
+            IList<Copanies> compressElems = new List<Copanies>();
+            foreach (Copanies elem in elemnts.ToList<Copanies>())
             {
-                if (!compressElems.Select<Copanies,string>(x => x.datetime.Date.ToShortDateString()).Contains(elem.datetime.Date.ToShortDateString()))
+                if (!compressElems.Select<Copanies, string>(x => x.datetime.Date.ToShortDateString()).Contains(elem.datetime.Date.ToShortDateString()))
                     compressElems.Add(elem);
             }
-      
+
 
             //var compressElems = compress(elemnts);
             ViewBag.labels = "\"" + String.Join("\", \"", compressElems.Select(x => x.datetime.Date.ToShortDateString())) + "\"";
-            ViewBag.dateShows = "\"" + String.Join("\", \"", compressElems.Select(x => x.Shows)) + "\""; 
+            ViewBag.dateShows = "\"" + String.Join("\", \"", compressElems.Select(x => x.Shows)) + "\"";
             ViewBag.dateClicks = "\"" + String.Join("\", \"", compressElems.Select(x => x.Clicks)) + "\"";
 
 
 
-            ViewBag.ctrStat = "\"" + String.Join("\", \"", compressElems.Select<Copanies, string>(x => ((double)x.Clicks * 100.0 / (double)x.Shows).ToString(CultureInfo.GetCultureInfo("en-GB")))) + "\""; 
-            ViewBag.midllePrice = "\"" + String.Join("\", \"", compressElems.Select<Copanies, string>(x => ((double)x.Sum / (double)x.Clicks).ToString(CultureInfo.GetCultureInfo("en-GB")))) + "\""; 
+            ViewBag.ctrStat = "\"" + String.Join("\", \"", compressElems.Select<Copanies, string>(x => ((double)x.Clicks * 100.0 / (double)x.Shows).ToString(CultureInfo.GetCultureInfo("en-GB")))) + "\"";
+            ViewBag.midllePrice = "\"" + String.Join("\", \"", compressElems.Select<Copanies, string>(x => ((double)x.Sum / (double)x.Clicks).ToString(CultureInfo.GetCultureInfo("en-GB")))) + "\"";
 
 
             ViewBag.lastElem = lastElem.First();
@@ -84,7 +84,19 @@ namespace FE.Controllers
         public ActionResult CompanyStatus(string company)
         {
             ViewBag.company = company;
-            return PartialView();
+
+            var companyId = MongoDBConection.Connection<Copanies>("companies")
+     .Find(Query.Matches("Name", company))
+     .SetLimit(1).FirstOrDefault().CampaignID;
+
+            var elemnts = MongoDBConection.Connection<StatusCompany>("CampaignSettings")
+                .Find(Query.EQ("CampaignID", companyId))
+                .FirstOrDefault();
+
+            ViewBag.company = company;
+
+
+            return PartialView(elemnts);
         }
 
         [HttpPost]
@@ -92,23 +104,23 @@ namespace FE.Controllers
         public ActionResult CompanyStatus(StatusCompany model, string company)
         {
 
-             var companyId = MongoDBConection.Connection<Copanies>("companies")
-             .Find(Query.Matches("Name", company))
-             .SetLimit(1).FirstOrDefault().CampaignID;
+            var companyId = MongoDBConection.Connection<Copanies>("companies")
+            .Find(Query.Matches("Name", company))
+            .SetLimit(1).FirstOrDefault().CampaignID;
 
             var elemnts = MongoDBConection.Connection<Copanies>("CampaignSettings")
-                .Update(Query.EQ("CampaignID", companyId.ToString()), Update.Set("ShowInTop", model.ShowInTop)
+                .Update(Query.EQ("CampaignID", companyId), Update.Set("ShowInTop", model.ShowInTop)
                 .Set("IsActive", model.IsActive)
                 .Set("ShowInBottom", model.ShowInBottom)
                 .Set("MaxPrice", model.MaxPrice)
-                .Set("CampaignID", companyId));
+                .Set("CampaignID", companyId), UpdateFlags.Upsert);
+            ViewBag.company = company;
+            return RedirectToAction("Statistic", "Profile", new { company = ViewBag.company });
 
-        
-              
-            return PartialView();
+            //return PartialView();
         }
-        
- 
+
+
     }
 }
 
