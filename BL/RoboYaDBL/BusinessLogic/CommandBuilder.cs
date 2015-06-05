@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using RoboYaDBL.Documents;
 
 namespace RoboYaDBL.BusinessLogic
@@ -8,27 +9,19 @@ namespace RoboYaDBL.BusinessLogic
         public List<CommandDocument> Build(Dictionary<int, PhrasePriceDocument> phrasePrices, int[] campaingPhraseIDs,
             CampaignSettingsDocument campaignSettings)
         {
-            var resultCommands = new List<CommandDocument>();
-
-            foreach (var campaingPhraseId in campaingPhraseIDs)
-            {
-                var price = phrasePrices[campaingPhraseId];
-                var newPrice = Calculate(price, campaignSettings);
-
-                resultCommands.Add(new CommandDocument
+            return campaingPhraseIDs.Where(phrasePrices.ContainsKey)
+                .Select(phraseId => new CommandDocument
                 {
                     CampaignID = campaignSettings.CampaignID,
-                    PhraseID = campaingPhraseId,
-                    Price = newPrice
-                });
-            }
-
-            return resultCommands;
+                    PhraseID = phraseId,
+                    Price = Calculate(phrasePrices[phraseId], campaignSettings)
+                })
+                .ToList();
         }
 
-        private float Calculate(PhrasePriceDocument prices, CampaignSettingsDocument campaignSettings)
+        private static double Calculate(PhrasePriceDocument prices, CampaignSettingsDocument campaignSettings)
         {
-            var result = (float)prices.PremiumMin;
+            var result = prices.PremiumMin;
             return result ;
         }
     }

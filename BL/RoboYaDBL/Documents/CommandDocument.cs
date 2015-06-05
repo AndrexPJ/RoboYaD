@@ -4,6 +4,6 @@
     {
         public int CampaignID { get; set; }
         public long PhraseID { get; set; }
-        public float Price { get; set; }
+        public double Price { get; set; }
     }
 }

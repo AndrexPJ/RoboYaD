@@ -56,9 +56,6 @@
     <Reference Include="MongoDB.Driver.Core">
       <HintPath>..\packages\MongoDB.Driver.Core.2.0.0\lib\net45\MongoDB.Driver.Core.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Driver.Legacy">
-      <HintPath>..\packages\mongocsharpdriver.2.0.0\lib\net45\MongoDB.Driver.Legacy.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -70,6 +67,7 @@
   <ItemGroup>
     <Compile Include="BusinessLogic\CommandBuilder.cs" />
     <Compile Include="BusinessLogic\ICommandBuilder.cs" />
+    <Compile Include="ConsoleTimeLogger.cs" />
     <Compile Include="Documents\CampaignPhrasesDocument.cs" />
     <Compile Include="Documents\CampaignSettingsDocument.cs" />
     <Compile Include="Documents\CommandDocument.cs" />

@@ -19,8 +19,6 @@ C:\Users\Андрей\Documents\GitHub\RoboYaD\BL\RoboYaDBL\bin\Debug\RoboYaDBL.
 C:\Users\Андрей\Documents\GitHub\RoboYaD\BL\RoboYaDBL\bin\Debug\MongoDB.Bson.dll
 C:\Users\Андрей\Documents\GitHub\RoboYaD\BL\RoboYaDBL\bin\Debug\MongoDB.Driver.Core.dll
 C:\Users\Андрей\Documents\GitHub\RoboYaD\BL\RoboYaDBL\bin\Debug\MongoDB.Driver.dll
-C:\Users\Андрей\Documents\GitHub\RoboYaD\BL\RoboYaDBL\bin\Debug\MongoDB.Driver.Legacy.dll
 C:\Users\Андрей\Documents\GitHub\RoboYaD\BL\RoboYaDBL\bin\Debug\MongoDB.Bson.xml
 C:\Users\Андрей\Documents\GitHub\RoboYaD\BL\RoboYaDBL\bin\Debug\MongoDB.Driver.xml
-C:\Users\Андрей\Documents\GitHub\RoboYaD\BL\RoboYaDBL\bin\Debug\MongoDB.Driver.Legacy.xml
 C:\Users\Андрей\Documents\GitHub\RoboYaD\BL\RoboYaDBL\obj\Debug\RoboYaDBL.csprojResolveAssemblyReference.cache

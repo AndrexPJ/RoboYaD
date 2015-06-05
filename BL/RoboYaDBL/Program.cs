@@ -17,6 +17,9 @@ namespace RoboYaDBL
     {
         static void Main(string[] args)
         {
+            const int timeIntervalMs = 2*1000*60;
+            const int dataTimeIntervalMs = timeIntervalMs;
+
             IMongoClient client = new MongoClient("mongodb://ilya:ilya@ds049641.mongolab.com:49641/yandex_bot");
             var db = client.GetDatabase("yandex_bot");
 
@@ -31,28 +34,23 @@ namespace RoboYaDBL
 
             var documentRepository = new MongoDocumentRepository(collectionContainer);
             var commandBuilder = new CommandBuilder();
-            var mainApplicationProccessor = new MainApplicationProccessor(documentRepository, commandBuilder);
-
-            /*var testSettings = new CampaignSettingsDocument
-            {
-                CampaignID = 92339,
-                IsActive = true,
-                MaxPrice = 10.0f,
-                ShowInBottom = true,
-                ShowInTop = true
-            };
-
-            documentRepository.Write(testSettings);*/
+            var mainApplicationProccessor = new MainApplicationProccessor(documentRepository, commandBuilder, dataTimeIntervalMs);
 
             var procThread = new Thread(() =>
             {
                 while (true)
                 {
-                    Console.WriteLine("");
-                    Console.WriteLine("WAKE UP");
-                    mainApplicationProccessor.Proccess();
-                    Console.WriteLine("SLEEP");
-                    Thread.Sleep(2*1000*60);
+                    ConsoleTimeLogger.Log("WAKE UP");
+                    try
+                    {
+                        mainApplicationProccessor.Proccess();
+                    }
+                    catch (Exception ex)
+                    {
+                        ConsoleTimeLogger.Log(string.Format("ERROR {0}", ex.Message));
+                    }
+                    ConsoleTimeLogger.Log("SLEEP");
+                    Thread.Sleep(timeIntervalMs);
                 }
             });
 
